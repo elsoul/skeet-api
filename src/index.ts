@@ -1,44 +1,54 @@
-import { ApolloServer } from '@apollo/server'
-import { startStandaloneServer } from '@apollo/server/standalone'
+import { PrismaClient } from '@prisma/client'
+import { ApolloServer } from 'apollo-server'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
+import { User, Profile } from 'nexus-prisma'
+import { makeSchema, objectType, queryType } from 'nexus'
+import { join } from 'path'
 
-const typeDefs = `#graphql
-  type Book {
-    title: String
-    author: String
-  }
+const prisma = new PrismaClient()
+export const schema = makeSchema({
+  types: [
+    queryType({
+      definition(t) {
+        t.nonNull.list.nonNull.field('users', {
+          type: 'User',
+          resolve(_, __, ctx) {
+            return ctx.prisma.user.findMany()
+          },
+        })
+      },
+    }),
+    objectType({
+      name: User.$name,
+      definition(t) {
+        t.field(User.id)
+        t.field(User.profile)
+      },
+    }),
 
-  type Query {
-    books: [Book]
-  }
-`
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
+    objectType({
+      name: Profile.$name,
+      definition(t) {
+        t.field(Profile.id), t.field(Profile.iconUrl)
+      },
+    }),
+  ],
+  outputs: {
+    typegen: join(__dirname, '../nexus-typegen.ts'),
+    schema: join(__dirname, '../schema.graphql'),
   },
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-  },
-]
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-}
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
 })
 
-async function run() {
-  const { url } = await startStandaloneServer(server, {
-    listen: { port: 4000 },
-  })
+const server = new ApolloServer({
+  schema,
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
+  context() {
+    return {
+      prisma,
+    }
+  },
+})
 
-  console.log(`🚀  Server ready at: ${url}`)
-}
-
-run()
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`)
+})
