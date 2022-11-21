@@ -11,6 +11,7 @@ CREATE TABLE "User" (
 CREATE TABLE "Profile" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "iconUrl" TEXT,
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );
