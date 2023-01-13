@@ -1,47 +1,31 @@
 import { PrismaClient } from '@prisma/client'
-import { ApolloServer } from 'apollo-server'
-import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core'
-import { User, Profile } from 'nexus-prisma'
-import { makeSchema, objectType, queryType } from 'nexus'
-import { join } from 'path'
+import cors from 'cors'
+import express from 'express'
+import { ApolloServer } from 'apollo-server-express'
+import {
+  ApolloServerPluginLandingPageGraphQLPlayground,
+  ApolloServerPluginLandingPageDisabled,
+} from 'apollo-server-core'
+import { schema } from './schema'
+import { applyMiddleware } from 'graphql-middleware'
+import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache'
 
 const prisma = new PrismaClient()
-export const schema = makeSchema({
-  types: [
-    queryType({
-      definition(t) {
-        t.nonNull.list.nonNull.field('users', {
-          type: 'User',
-          resolve(_, __, ctx) {
-            return ctx.prisma.user.findMany()
-          },
-        })
-      },
-    }),
-    objectType({
-      name: User.$name,
-      definition(t) {
-        t.field(User.id)
-        t.field(User.profile)
-      },
-    }),
 
-    objectType({
-      name: Profile.$name,
-      definition(t) {
-        t.field(Profile.id), t.field(Profile.iconUrl)
-      },
-    }),
+const PORT = process.env.PORT || 4200
+const skeetEnv = process.env.NODE_ENV || 'development'
+
+export const server = new ApolloServer({
+  schema: applyMiddleware(schema),
+  cache: new InMemoryLRUCache({
+    maxSize: Math.pow(2, 20) * 100,
+    ttl: 300_000,
+  }),
+  plugins: [
+    skeetEnv === 'production'
+      ? ApolloServerPluginLandingPageDisabled()
+      : ApolloServerPluginLandingPageGraphQLPlayground(),
   ],
-  outputs: {
-    typegen: join(__dirname, '../nexus-typegen.ts'),
-    schema: join(__dirname, '../schema.graphql'),
-  },
-})
-
-const server = new ApolloServer({
-  schema,
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   context() {
     return {
       prisma,
@@ -49,6 +33,19 @@ const server = new ApolloServer({
   },
 })
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`)
+const app = express()
+app.use(cors())
+app.get('/', (req, res) => {
+  res.send('Skeet App is Running!')
+})
+
+export const startApolloServer = async () => {
+  await server.start()
+  server.applyMiddleware({ app })
+  return server
+}
+
+export const expressServer = app.listen(PORT, () => {
+  startApolloServer()
+  console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)
 })

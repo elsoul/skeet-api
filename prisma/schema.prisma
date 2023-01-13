@@ -12,15 +12,13 @@ datasource db {
 }
 
 model User {
-  id        String  @id
+  id        Int    @default(autoincrement()) @id
+  uid       String @unique
   name      String
-  profile   Profile @relation(fields: [profileId], references: [id])
-  profileId String  @unique
-}
-
-model Profile {
-  id   String @id
-  email String
-  iconUrl String?
-  user User?
+  email     String
+  pubkey    String
+  iconUrl   String
+  role      Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

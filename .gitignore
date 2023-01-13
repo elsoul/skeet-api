@@ -44,3 +44,6 @@ gcloud-key.json
 #firebase
 .firebase
 firebase-debug.log
+
+#coverage
+/coverage_dir
