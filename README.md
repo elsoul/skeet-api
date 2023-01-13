@@ -1,6 +1,6 @@
 ## Skeet API Boilerplate
 
-Prisma, GraphQL, TypeScript, Google Cloud Run
+Nexus Prisma, GraphQL, ApolloServer with Express, TypeScript, PostgreSQL, Jest Test, Google Cloud Run
 
 ## What's Skeet?
 
@@ -24,7 +24,7 @@ Powered by TypeScript GraphQL, Prisma, Jest, Prettier, and Google Cloud.
 ## yarn install
 
 ```bash
-yarn
+$ yarn
 ```
 
 ## Start PostgreSQL with docker
