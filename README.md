@@ -1,6 +1,6 @@
 ## Skeet API Boilerplate
 
-Nexus Prisma, GraphQL, ApolloServer with Express, TypeScript, PostgreSQL, Jest Test, Google Cloud Run
+Nexus Prisma, GraphQL, Relay Connection, ApolloServer with Express, TypeScript, PostgreSQL, Jest Test, Google Cloud Run
 
 ## What's Skeet?
 
@@ -55,6 +55,10 @@ $ yarn db:migrate
 ```bash
 $ yarn dev
 ```
+
+Now you can access;
+
+`http://localhost:4200/graphql`
 
 ### Test
 
