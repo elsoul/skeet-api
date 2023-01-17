@@ -38,9 +38,6 @@ yarn-error.log*
 # Gcloud key
 gcloud-key.json
 
-# env
-.env
-
 #firebase
 .firebase
 firebase-debug.log
