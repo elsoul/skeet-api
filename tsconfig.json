@@ -16,6 +16,7 @@
     "resolveJsonModule": true,
     "lib": ["esnext"],
     "sourceMap": true,
+    "allowJs": true,
     "paths": {
       "@/*": ["src/*"]
     }

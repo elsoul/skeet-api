@@ -13,7 +13,7 @@
   "scripts": {
     "skeet:env": "echo $SKEET_ENV",
     "test": "jest --detectOpenHandles --maxWorkers=1",
-    "db:migrate": "NODE_ENV=$SKEET_ENV npx prisma migrate dev",
+    "db:migrate": "npx prisma migrate dev",
     "docker:network": "docker network create skeet-network",
     "docker:mongo": "docker run -d -p 27017:27017 --name skeet-mongo --network skeet-network -v mongo-data:/data/db -e MONGODB_INITDB_ROOT_USERNAME=skeeter -e MONGODB_INITDB_ROOT_PASSWORD=rabbit mongo:latest",
     "docker:psql": "docker run --restart always -d --name skeet-psql --network skeet-network -p 5432:5432 -v postres-tmp:/home/postgresql/data -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=skeet-api postgres:14-alpine",
