@@ -59,11 +59,7 @@ export interface NexusGenObjects {
     pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
   }
   User: { // root type
-    email: string; // String!
     name: string; // String!
-    pubkey: string; // String!
-    role: number; // Int!
-    uid: string; // String!
   }
   UserEdge: { // root type
     cursor: string; // String!
@@ -107,13 +103,9 @@ export interface NexusGenFieldTypes {
     totalCount: number | null; // Int
   }
   User: { // field return type
-    email: string; // String!
     id: string | null; // ID
     name: string; // String!
-    pubkey: string; // String!
     rawId: string | null; // ID
-    role: number; // Int!
-    uid: string; // String!
   }
   UserEdge: { // field return type
     cursor: string; // String!
@@ -149,13 +141,9 @@ export interface NexusGenFieldTypeNames {
     totalCount: 'Int'
   }
   User: { // field return type name
-    email: 'String'
     id: 'ID'
     name: 'String'
-    pubkey: 'String'
     rawId: 'ID'
-    role: 'Int'
-    uid: 'String'
   }
   UserEdge: { // field return type name
     cursor: 'String'
@@ -169,22 +157,14 @@ export interface NexusGenFieldTypeNames {
 export interface NexusGenArgTypes {
   Mutation: {
     createUser: { // args
-      email?: string | null; // String
       name?: string | null; // String
-      pubkey?: string | null; // String
-      role?: number | null; // Int
-      uid?: string | null; // String
     }
     deleteUser: { // args
       id: string; // String!
     }
     updateUser: { // args
-      email?: string | null; // String
       id: string; // String!
       name?: string | null; // String
-      pubkey?: string | null; // String
-      role?: number | null; // Int
-      uid?: string | null; // String
     }
   }
   Query: {

@@ -1,10 +1,4 @@
-import {
-  extendType,
-  queryField,
-  connectionPlugin,
-  nonNull,
-  stringArg,
-} from 'nexus'
+import { extendType, nonNull, stringArg } from 'nexus'
 import { connectionFromArray, fromGlobalId } from 'graphql-relay'
 import { User } from 'nexus-prisma'
 

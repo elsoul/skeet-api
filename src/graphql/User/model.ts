@@ -7,9 +7,5 @@ export const UserObject = objectType({
   definition(t) {
     t.relayGlobalId('id', {})
     t.field(User.name)
-    t.field(User.uid)
-    t.field(User.email)
-    t.field(User.pubkey)
-    t.field(User.role)
   },
 })

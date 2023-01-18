@@ -3,9 +3,9 @@
 
 
 type Mutation {
-  createUser(email: String, name: String, pubkey: String, role: Int, uid: String): User
+  createUser(name: String): User
   deleteUser(id: String!): User
-  updateUser(email: String, id: String!, name: String, pubkey: String, role: Int, uid: String): User
+  updateUser(id: String!, name: String): User
 }
 
 """An object with a global ID"""
@@ -85,13 +85,9 @@ type QueryUsersConnection_Connection {
 }
 
 type User {
-  email: String!
   id: ID
   name: String!
-  pubkey: String!
   rawId: ID
-  role: Int!
-  uid: String!
 }
 
 type UserEdge {

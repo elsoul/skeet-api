@@ -1,5 +1,5 @@
 import { fromGlobalId } from 'graphql-relay'
-import { objectType, stringArg, nonNull, intArg } from 'nexus'
+import { objectType, stringArg, nonNull } from 'nexus'
 import { User } from 'nexus-prisma'
 
 export const UserMutation = objectType({
@@ -9,20 +9,12 @@ export const UserMutation = objectType({
       type: User.$name,
       args: {
         name: stringArg(),
-        uid: stringArg(),
-        email: stringArg(),
-        pubkey: stringArg(),
-        role: intArg(),
       },
-      async resolve(_, { name, uid, email, pubkey, role }, ctx) {
+      async resolve(_, { name }, ctx) {
         try {
           return await ctx.prisma.user.create({
             data: {
               name,
-              uid,
-              email,
-              pubkey,
-              role,
             },
           })
         } catch (error) {
@@ -36,12 +28,8 @@ export const UserMutation = objectType({
       args: {
         id: nonNull(stringArg()),
         name: stringArg(),
-        uid: stringArg(),
-        email: stringArg(),
-        pubkey: stringArg(),
-        role: intArg(),
       },
-      async resolve(_, { id, name, uid, email, pubkey, role }, ctx) {
+      async resolve(_, { id, name }, ctx) {
         try {
           return await ctx.prisma.user.update({
             where: {
@@ -49,10 +37,6 @@ export const UserMutation = objectType({
             },
             data: {
               name,
-              uid,
-              email,
-              pubkey,
-              role,
             },
           })
         } catch (error) {
