@@ -12,7 +12,7 @@ import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache'
 
 const prisma = new PrismaClient()
 
-const PORT = process.env.PORT || 4200
+const PORT = process.env.PORT || 4000
 const skeetEnv = process.env.NODE_ENV || 'development'
 
 export const server = new ApolloServer({
