@@ -1,21 +1,25 @@
-FROM node:18.12-alpine AS build
+FROM node:18.13-alpine AS build
 
 WORKDIR /app
 
 COPY package* yarn.lock ./
 COPY prisma ./prisma/
-
-RUN yarn install --frozen-lockfile --production
+COPY .env.production .env
+COPY tsconfig.json ./
 COPY . .
+RUN yarn install --frozen-lockfile
 RUN yarn build
 
-FROM node:18.12-alpine
+FROM node:18.13-buster-slim
 
 WORKDIR /app
 
-COPY package*.json /app/
-COPY --from=build /app/node_modules /app/node_modules
-COPY --from=build /app/dist /app/dist
+RUN apt-get update -y && apt-get install -y openssl
+COPY .env.production .env
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production && yarn cache clean
+COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
 COPY --from=build /app/prisma /app/prisma
-
-CMD ["yarn", "start:prod"]
+COPY --from=build /app/dist /app/dist
+RUN npx prisma generate
+CMD ["yarn", "start"]
