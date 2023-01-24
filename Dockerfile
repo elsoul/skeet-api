@@ -1,16 +1,18 @@
-FROM node:18.13-alpine AS build
+FROM node:16.19-alpine AS build
 
 WORKDIR /app
 
 COPY package* yarn.lock ./
 COPY prisma ./prisma/
-COPY .env.production .env
+COPY .env.build .env
 COPY tsconfig.json ./
 COPY . .
+RUN npx prisma generate
+RUN npx prisma migrate deploy
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
-FROM node:18.13-buster-slim
+FROM node:16.19-buster-slim
 
 WORKDIR /app
 
