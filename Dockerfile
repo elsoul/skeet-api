@@ -1,4 +1,4 @@
-FROM node:16.19-alpine AS build
+FROM node:18.13-alpine AS build
 
 WORKDIR /app
 
@@ -12,11 +12,11 @@ RUN npx prisma migrate deploy
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
-FROM node:16.19-buster-slim
+FROM node:18.13-alpine
 
 WORKDIR /app
 
-RUN apt-get update -y && apt-get install -y openssl
+RUN apk add openssl
 COPY .env.production .env
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --production && yarn cache clean
