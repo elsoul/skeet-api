@@ -4,12 +4,10 @@ WORKDIR /app
 
 COPY package* yarn.lock ./
 COPY prisma ./prisma/
-COPY .env.build .env
 COPY tsconfig.json ./
 COPY . .
-RUN npx prisma generate
-RUN npx prisma migrate deploy
 RUN yarn install --frozen-lockfile
+RUN npx prisma generate
 RUN yarn build
 
 FROM node:18.13-alpine
@@ -17,7 +15,6 @@ FROM node:18.13-alpine
 WORKDIR /app
 
 RUN apk add openssl
-COPY .env.production .env
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --production && yarn cache clean
 COPY --from=build /app/node_modules/.prisma /app/node_modules/.prisma
