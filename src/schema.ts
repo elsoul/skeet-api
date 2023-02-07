@@ -4,19 +4,10 @@ import * as allTypes from './graphql'
 import { relayNodeInterfacePlugin } from '@jcm/nexus-plugin-relay-node-interface'
 import { relayGlobalIdPlugin } from '@jcm/nexus-plugin-relay-global-id'
 import { relayNodeInterfacePluginConfig } from './Node'
-import {
-  GraphQLBigInt,
-  GraphQLDateTime,
-  GraphQLEmailAddress,
-} from 'graphql-scalars'
+import { GraphQLDateTime } from 'graphql-scalars'
 
 export const schema = makeSchema({
-  types: [
-    allTypes,
-    asNexusMethod(GraphQLBigInt, 'bigint', 'bigint'),
-    asNexusMethod(GraphQLDateTime, 'datetime', 'datetime'),
-    asNexusMethod(GraphQLEmailAddress, 'email', 'email'),
-  ],
+  types: [allTypes, asNexusMethod(GraphQLDateTime, 'datetime', 'Date')],
   outputs: {
     typegen: join(__dirname, './nexus-typegen.ts'),
     schema: join(__dirname, './schema.graphql'),
