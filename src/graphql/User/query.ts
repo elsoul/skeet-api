@@ -10,9 +10,6 @@ export const UsersQuery = extendType({
       async resolve(_, args, ctx, info) {
         return connectionFromArray(await ctx.prisma.user.findMany(), args)
       },
-      async totalCount(_, args, ctx) {
-        return 0
-      },
       extendConnection(t) {
         t.int('totalCount', {
           async resolve(source, args, ctx) {
