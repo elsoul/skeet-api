@@ -45,6 +45,7 @@ type PageInfo {
 }
 
 type Query {
+  dailyTask(id: String!): Boolean
   getUser(id: String!): User
 
   """Fetches an object given its global ID"""
@@ -58,6 +59,7 @@ type Query {
     """The global IDs of objects"""
     ids: [ID!]!
   ): [Node]!
+  postTweet(id: String!, text: String!): Boolean
   usersConnection(
     """Returns the elements in the list that come after the specified cursor"""
     after: String

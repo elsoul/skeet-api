@@ -103,9 +103,11 @@ export interface NexusGenFieldTypes {
     startCursor: string | null; // String
   }
   Query: { // field return type
+    dailyTask: boolean | null; // Boolean
     getUser: NexusGenRootTypes['User'] | null; // User
     node: NexusGenRootTypes['Node'] | null; // Node
     nodes: Array<NexusGenRootTypes['Node'] | null>; // [Node]!
+    postTweet: boolean | null; // Boolean
     usersConnection: NexusGenRootTypes['QueryUsersConnection_Connection'] | null; // QueryUsersConnection_Connection
   }
   QueryUsersConnection_Connection: { // field return type
@@ -141,9 +143,11 @@ export interface NexusGenFieldTypeNames {
     startCursor: 'String'
   }
   Query: { // field return type name
+    dailyTask: 'Boolean'
     getUser: 'User'
     node: 'Node'
     nodes: 'Node'
+    postTweet: 'Boolean'
     usersConnection: 'QueryUsersConnection_Connection'
   }
   QueryUsersConnection_Connection: { // field return type name
@@ -180,6 +184,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    dailyTask: { // args
+      id: string; // String!
+    }
     getUser: { // args
       id: string; // String!
     }
@@ -188,6 +195,10 @@ export interface NexusGenArgTypes {
     }
     nodes: { // args
       ids: string[]; // [ID!]!
+    }
+    postTweet: { // args
+      id: string; // String!
+      text: string; // String!
     }
     usersConnection: { // args
       after?: string | null; // String
