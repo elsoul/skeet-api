@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { RelayNodeInterfacePluginConfig } from '@jcm/nexus-plugin-relay-node-interface'
 import { RelayGlobalIdPluginConfig } from '@jcm/nexus-plugin-relay-global-id'
-import { UsersQuery } from './graphql'
+import { UsersQuery } from '@/graphql'
 const idFetcher: RelayNodeInterfacePluginConfig['idFetcher'] = (
   { id, type },
   ctx,

@@ -1,4 +1,5 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
+
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -7,5 +8,8 @@ module.exports = {
   collectCoverageFrom: ['**/*.ts', '!**/node_modules/**'],
   coverageDirectory: 'coverage_dir',
   coverageReporters: ['html'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
   setupFilesAfterEnv: ['./tests/jest.setup.ts'],
 }

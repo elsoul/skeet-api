@@ -66,46 +66,6 @@ Now you can access;
 $ yarn test
 ```
 
-### Build & Run
-
-```bash
-$ yarn build
-$ yarn start
-```
-
-## Deploy to Google Cloud Run
-
-## Enable Google Cloud API
-
-```bash
-$ gcloud config set project PROJECT_ID
-$ gcloud services enable run.googleapis.com
-$ gcloud services enable containerregistry.googleapis.com
-```
-
-## Edit package.json config
-
-This is an example config.
-Please replace values with your setting.
-
-`package.json`
-
-```json
-"config": {
-  "project_id": "skeet-framework",
-  "app_name": "skeet-api",
-  "docker_image": "skeet-api:latest",
-  "image_url": "eu.gcr.io/skeet-framework/skeet-api:latest",
-  "region": "europe-west4",
-  "cpu": "1",
-  "memory": "1Gi"
-}
-```
-
-```bash
-$ yarn deploy
-```
-
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/elsoul/skeet-api This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.

@@ -1,6 +1,6 @@
 import { connectionPlugin, makeSchema, asNexusMethod } from 'nexus'
 import { join } from 'path'
-import * as allTypes from './graphql'
+import * as allTypes from '@/graphql'
 import { relayNodeInterfacePlugin } from '@jcm/nexus-plugin-relay-node-interface'
 import { relayGlobalIdPlugin } from '@jcm/nexus-plugin-relay-global-id'
 import { relayNodeInterfacePluginConfig } from './Node'

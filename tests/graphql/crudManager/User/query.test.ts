@@ -1,5 +1,5 @@
 import request from 'supertest'
-import { expressServer } from '../../../src/index'
+import { expressServer } from '../../../../src/index'
 
 describe('User Query', () => {
   describe('usersConnection', () => {

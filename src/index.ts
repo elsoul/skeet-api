@@ -6,7 +6,7 @@ import {
   ApolloServerPluginLandingPageGraphQLPlayground,
   ApolloServerPluginLandingPageDisabled,
 } from 'apollo-server-core'
-import { schema } from './schema'
+import { schema } from '@/schema'
 import { applyMiddleware } from 'graphql-middleware'
 import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache'
 
