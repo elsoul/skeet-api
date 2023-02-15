@@ -103,7 +103,6 @@ export interface NexusGenFieldTypes {
     startCursor: string | null; // String
   }
   Query: { // field return type
-    dailyTask: boolean | null; // Boolean
     getUser: NexusGenRootTypes['User'] | null; // User
     node: NexusGenRootTypes['Node'] | null; // Node
     nodes: Array<NexusGenRootTypes['Node'] | null>; // [Node]!
@@ -143,7 +142,6 @@ export interface NexusGenFieldTypeNames {
     startCursor: 'String'
   }
   Query: { // field return type name
-    dailyTask: 'Boolean'
     getUser: 'User'
     node: 'Node'
     nodes: 'Node'
@@ -184,9 +182,6 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
-    dailyTask: { // args
-      id: string; // String!
-    }
     getUser: { // args
       id: string; // String!
     }

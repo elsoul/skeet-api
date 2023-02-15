@@ -45,7 +45,6 @@ type PageInfo {
 }
 
 type Query {
-  dailyTask(id: String!): Boolean
   getUser(id: String!): User
 
   """Fetches an object given its global ID"""
