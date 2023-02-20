@@ -44,5 +44,3 @@ firebase-debug.log
 
 #coverage
 /coverage_dir
-
-.env.production
