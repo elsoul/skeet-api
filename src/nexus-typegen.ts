@@ -118,7 +118,6 @@ export interface NexusGenFieldTypes {
   User: { // field return type
     id: string | null; // ID
     name: string; // String!
-    rawId: string | null; // ID
   }
   UserEdge: { // field return type
     cursor: string; // String!
@@ -157,7 +156,6 @@ export interface NexusGenFieldTypeNames {
   User: { // field return type name
     id: 'ID'
     name: 'String'
-    rawId: 'ID'
   }
   UserEdge: { // field return type name
     cursor: 'String'

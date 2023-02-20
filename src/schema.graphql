@@ -93,7 +93,6 @@ type QueryUsersConnection_Connection {
 type User {
   id: ID
   name: String!
-  rawId: ID
 }
 
 type UserEdge {

@@ -35,8 +35,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# Gcloud key
-gcloud-key.json
+# key
+keyfile.json
 
 #firebase
 .firebase
@@ -44,3 +44,4 @@ firebase-debug.log
 
 #coverage
 /coverage_dir
+
