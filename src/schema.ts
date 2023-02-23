@@ -1,6 +1,11 @@
-import { connectionPlugin, makeSchema, asNexusMethod } from 'nexus'
+import {
+  connectionPlugin,
+  makeSchema,
+  asNexusMethod,
+  queryComplexityPlugin,
+} from 'nexus'
 import { join } from 'path'
-import * as allTypes from '@/graphql'
+import * as allTypes from './graphql'
 import { relayNodeInterfacePlugin } from '@jcm/nexus-plugin-relay-node-interface'
 import { relayGlobalIdPlugin } from '@jcm/nexus-plugin-relay-global-id'
 import { relayNodeInterfacePluginConfig } from './Node'
@@ -23,5 +28,6 @@ export const schema = makeSchema({
     relayGlobalIdPlugin({
       shouldAddRawId: process.env.NODE_ENV === 'development' ? true : false,
     }),
+    queryComplexityPlugin(),
   ],
 })
