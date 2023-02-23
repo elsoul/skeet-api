@@ -45,15 +45,6 @@ app.use(cors())
 app.get('/', (req, res) => {
   res.send('Skeet App is Running!')
 })
-app.use('*', (req: Request, res, next) => {
-  if (req.body) {
-    const body = JSON.stringify(req.body)
-    if (body.length > 2000) {
-      throw new Error('Query too large!')
-    }
-  }
-  next()
-})
 
 export const server = new ApolloServer<Context>({
   schema: applyMiddleware(schema, permissions),
