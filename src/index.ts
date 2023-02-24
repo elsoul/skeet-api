@@ -14,6 +14,8 @@ import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache'
 import { permissions } from '@/permissions'
 import depthLimit from 'graphql-depth-limit'
 import queryComplexity, { simpleEstimator } from 'graphql-query-complexity'
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
+import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled'
 
 interface Context {
   token?: String
@@ -52,7 +54,12 @@ export const server = new ApolloServer<Context>({
     maxSize: Math.pow(2, 20) * 100,
     ttl: 300_000,
   }),
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  plugins: [
+    ApolloServerPluginDrainHttpServer({ httpServer }),
+    process.env.NODE_ENV === 'production'
+      ? ApolloServerPluginLandingPageDisabled()
+      : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
+  ],
   validationRules: [depthLimit(7), queryComplexityRule],
 })
 export const startApolloServer = async () => {

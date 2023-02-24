@@ -22,7 +22,6 @@ const createCloudTask = async (path: string, queue: string, body: string) => {
     }
 
     console.log('Sending task:')
-    console.log(task)
 
     // Send create task request.
     const request = { parent: parent, task: task }
