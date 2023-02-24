@@ -1,6 +1,6 @@
 {
   "name": "skeet-api",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "Skeet API - Full-stack TypeScript Serverless Framework",
   "main": "dist/index.js",
   "repository": "https://github.com/elsoul/skeet-api.git",
@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "private": false,
   "scripts": {
-    "test": "jest --detectOpenHandles --maxWorkers=1",
+    "test": "jest --coverage=false --detectOpenHandles --maxWorkers=1",
     "update:packages": "ncu -u && yarn",
     "build": "npx ts-node build.ts",
     "publish": "npm publish",
