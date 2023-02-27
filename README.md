@@ -27,29 +27,6 @@ Powered by TypeScript GraphQL, Prisma, Jest, Prettier, and Google Cloud.
 $ yarn
 ```
 
-## Start PostgreSQL with docker
-
-```bash
-$ yarn docker:network
-$ yarn docker:psql
-```
-
-## Copy .env file from .env.sample
-
-```bash
-$ cp .env.sample .env
-```
-
-## Migrate your prisma.schema
-
-First, you need to edit `prisma/schema.prisma` file
-
-Then
-
-```bash
-$ yarn db:migrate
-```
-
 ### Run local
 
 ```bash

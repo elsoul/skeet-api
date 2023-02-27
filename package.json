@@ -1,6 +1,6 @@
 {
   "name": "skeet-api",
-  "version": "0.5.8",
+  "version": "0.5.9",
   "description": "Skeet API - Full-stack TypeScript Serverless Framework",
   "main": "dist/index.js",
   "repository": "https://github.com/elsoul/skeet-api.git",
@@ -13,7 +13,9 @@
     "build": "npx ts-node build.ts",
     "publish": "npm publish",
     "dev": "nodemon",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "db:deploy": "npx prisma migrate deploy",
+    "db:seed": "npx prisma db seed"
   },
   "dependencies": {
     "@apollo/server": "4.4.0",
