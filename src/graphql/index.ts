@@ -1,2 +1,2 @@
-export * from './crudManager'
+export * from './modelManager'
 export * from './taskManager'

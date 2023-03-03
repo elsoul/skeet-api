@@ -1,6 +1,6 @@
 {
   "name": "skeet-api",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "description": "Skeet API - Full-stack TypeScript Serverless Framework",
   "main": "dist/index.js",
   "repository": "https://github.com/elsoul/skeet-api.git",
@@ -22,7 +22,7 @@
     "@google-cloud/tasks": "3.1.0",
     "@jcm/nexus-plugin-relay-global-id": "0.2.0",
     "@jcm/nexus-plugin-relay-node-interface": "0.2.0",
-    "@prisma/client": "4.10.1",
+    "@prisma/client": "4.11.0",
     "dotenv": "16.0.3",
     "firebase-admin": "11.4.1",
     "graphql": "16.6.0",
@@ -36,7 +36,7 @@
     "nexus-prisma": "1.0.4",
     "node-env-run": "4.0.2",
     "node-fetch": "2.6.7",
-    "prisma": "4.10.1"
+    "prisma": "4.11.0"
   },
   "devDependencies": {
     "@types/cors": "2.8.13",
