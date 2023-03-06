@@ -8,14 +8,15 @@ import bodyParser from 'body-parser'
 import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
-import { schema } from './schema'
+import { schema } from '@/schema'
 import { applyMiddleware } from 'graphql-middleware'
 import { InMemoryLRUCache } from '@apollo/utils.keyvaluecache'
-import { permissions } from './permissions'
+import { permissions } from '@/permissions'
 import depthLimit from 'graphql-depth-limit'
 import queryComplexity, { simpleEstimator } from 'graphql-query-complexity'
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
 import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled'
+import { sleep } from '@/utils/time'
 
 interface Context {
   token?: String
@@ -76,5 +77,11 @@ export const startApolloServer = async () => {
 
 export const expressServer = httpServer.listen(PORT, async () => {
   await startApolloServer()
-  console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`)
+  if (process.argv[2]) {
+    await sleep(1000)
+    process.exit()
+  }
+  console.log(
+    `🚀 [${skeetEnv}]Server ready at http://localhost:${PORT}/graphql`
+  )
 })
