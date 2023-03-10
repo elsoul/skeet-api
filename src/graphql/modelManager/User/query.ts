@@ -5,7 +5,7 @@ import { User } from 'nexus-prisma'
 export const UsersQuery = extendType({
   type: 'Query',
   definition(t) {
-    t.connectionField('usersConnection', {
+    t.connectionField('userConnection', {
       type: User.$name,
       async resolve(_, args, ctx, info) {
         return connectionFromArray(await ctx.prisma.user.findMany(), args)

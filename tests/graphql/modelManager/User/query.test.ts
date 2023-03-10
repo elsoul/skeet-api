@@ -9,7 +9,7 @@ describe('User Query', () => {
         .post('/graphql')
         .send({
           query: `query {
-                    usersConnection(first: 10) {
+                    userConnection(first: 10) {
                       totalCount
                       edges {
                         cursor

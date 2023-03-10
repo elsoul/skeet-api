@@ -59,7 +59,7 @@ type Query {
     ids: [ID!]!
   ): [Node]!
   postTweet(id: String!, text: String!): Boolean
-  usersConnection(
+  userConnection(
     """Returns the elements in the list that come after the specified cursor"""
     after: String
 
@@ -71,10 +71,10 @@ type Query {
 
     """Returns the last n elements from the list."""
     last: Int
-  ): QueryUsersConnection_Connection
+  ): QueryUserConnection_Connection
 }
 
-type QueryUsersConnection_Connection {
+type QueryUserConnection_Connection {
   """
   https://facebook.github.io/relay/graphql/connections.htm#sec-Edge-Types
   """

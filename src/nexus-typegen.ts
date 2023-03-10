@@ -66,7 +66,7 @@ export interface NexusGenObjects {
     startCursor?: string | null; // String
   }
   Query: {};
-  QueryUsersConnection_Connection: { // root type
+  QueryUserConnection_Connection: { // root type
     edges?: Array<NexusGenRootTypes['UserEdge'] | null> | null; // [UserEdge]
     nodes?: Array<NexusGenRootTypes['User'] | null> | null; // [User]
     pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
@@ -108,9 +108,9 @@ export interface NexusGenFieldTypes {
     node: NexusGenRootTypes['Node'] | null; // Node
     nodes: Array<NexusGenRootTypes['Node'] | null>; // [Node]!
     postTweet: boolean | null; // Boolean
-    usersConnection: NexusGenRootTypes['QueryUsersConnection_Connection'] | null; // QueryUsersConnection_Connection
+    userConnection: NexusGenRootTypes['QueryUserConnection_Connection'] | null; // QueryUserConnection_Connection
   }
-  QueryUsersConnection_Connection: { // field return type
+  QueryUserConnection_Connection: { // field return type
     edges: Array<NexusGenRootTypes['UserEdge'] | null> | null; // [UserEdge]
     nodes: Array<NexusGenRootTypes['User'] | null> | null; // [User]
     pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
@@ -146,9 +146,9 @@ export interface NexusGenFieldTypeNames {
     node: 'Node'
     nodes: 'Node'
     postTweet: 'Boolean'
-    usersConnection: 'QueryUsersConnection_Connection'
+    userConnection: 'QueryUserConnection_Connection'
   }
-  QueryUsersConnection_Connection: { // field return type name
+  QueryUserConnection_Connection: { // field return type name
     edges: 'UserEdge'
     nodes: 'User'
     pageInfo: 'PageInfo'
@@ -194,7 +194,7 @@ export interface NexusGenArgTypes {
       id: string; // String!
       text: string; // String!
     }
-    usersConnection: { // args
+    userConnection: { // args
       after?: string | null; // String
       before?: string | null; // String
       first?: number | null; // Int
