@@ -62,6 +62,7 @@ export const server = new ApolloServer<Context>({
       : ApolloServerPluginLandingPageLocalDefault({ footer: false }),
   ],
   validationRules: [depthLimit(7), queryComplexityRule],
+  introspection: true,
 })
 export const startApolloServer = async () => {
   await server.start()

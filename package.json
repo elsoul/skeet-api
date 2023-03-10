@@ -1,6 +1,6 @@
 {
   "name": "skeet-api",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Skeet API - Full-stack TypeScript Serverless Framework",
   "main": "dist/index.js",
   "repository": "https://github.com/elsoul/skeet-api.git",
@@ -24,7 +24,7 @@
     "@jcm/nexus-plugin-relay-global-id": "0.2.0",
     "@jcm/nexus-plugin-relay-node-interface": "0.2.0",
     "@prisma/client": "4.11.0",
-    "crypto": "^1.0.1",
+    "crypto": "1.0.1",
     "dotenv": "16.0.3",
     "firebase-admin": "11.4.1",
     "graphql": "16.6.0",
