@@ -6,6 +6,9 @@ export const UserObject = objectType({
   description: User.$description,
   definition(t) {
     t.relayGlobalId('id', {})
+    t.field(User.uid)
     t.field(User.name)
+    t.field(User.email)
+    t.field(User.iconUrl)
   },
 })

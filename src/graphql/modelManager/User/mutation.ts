@@ -8,14 +8,15 @@ export const UserMutation = objectType({
     t.field('createUser', {
       type: User.$name,
       args: {
+        uid: stringArg(),
         name: stringArg(),
+        email: stringArg(),
+        iconUrl: stringArg(),
       },
-      async resolve(_, { name }, ctx) {
+      async resolve(_, args, ctx) {
         try {
           return await ctx.prisma.user.create({
-            data: {
-              name,
-            },
+            data: args,
           })
         } catch (error) {
           console.log(error)
@@ -27,7 +28,10 @@ export const UserMutation = objectType({
       type: User.$name,
       args: {
         id: nonNull(stringArg()),
+        uid: stringArg(),
         name: stringArg(),
+        email: stringArg(),
+        iconUrl: stringArg(),
       },
       async resolve(_, { id, name }, ctx) {
         try {

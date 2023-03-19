@@ -58,6 +58,9 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  LoginResponse: { // root type
+    token?: string | null; // String
+  }
   Mutation: {};
   PageInfo: { // root type
     endCursor?: string | null; // String
@@ -72,7 +75,10 @@ export interface NexusGenObjects {
     pageInfo: NexusGenRootTypes['PageInfo']; // PageInfo!
   }
   User: { // root type
+    email: string; // String!
+    iconUrl: string; // String!
     name: string; // String!
+    uid: string; // String!
   }
   UserEdge: { // root type
     cursor: string; // String!
@@ -92,9 +98,13 @@ export type NexusGenRootTypes = NexusGenInterfaces & NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  LoginResponse: { // field return type
+    token: string | null; // String
+  }
   Mutation: { // field return type
     createUser: NexusGenRootTypes['User'] | null; // User
     deleteUser: NexusGenRootTypes['User'] | null; // User
+    login: NexusGenRootTypes['LoginResponse'] | null; // LoginResponse
     updateUser: NexusGenRootTypes['User'] | null; // User
   }
   PageInfo: { // field return type
@@ -117,8 +127,11 @@ export interface NexusGenFieldTypes {
     totalCount: number | null; // Int
   }
   User: { // field return type
+    email: string; // String!
+    iconUrl: string; // String!
     id: string | null; // ID
     name: string; // String!
+    uid: string; // String!
   }
   UserEdge: { // field return type
     cursor: string; // String!
@@ -130,9 +143,13 @@ export interface NexusGenFieldTypes {
 }
 
 export interface NexusGenFieldTypeNames {
+  LoginResponse: { // field return type name
+    token: 'String'
+  }
   Mutation: { // field return type name
     createUser: 'User'
     deleteUser: 'User'
+    login: 'LoginResponse'
     updateUser: 'User'
   }
   PageInfo: { // field return type name
@@ -155,8 +172,11 @@ export interface NexusGenFieldTypeNames {
     totalCount: 'Int'
   }
   User: { // field return type name
+    email: 'String'
+    iconUrl: 'String'
     id: 'ID'
     name: 'String'
+    uid: 'String'
   }
   UserEdge: { // field return type name
     cursor: 'String'
@@ -170,14 +190,23 @@ export interface NexusGenFieldTypeNames {
 export interface NexusGenArgTypes {
   Mutation: {
     createUser: { // args
+      email?: string | null; // String
+      iconUrl?: string | null; // String
       name?: string | null; // String
+      uid?: string | null; // String
     }
     deleteUser: { // args
       id: string; // String!
     }
+    login: { // args
+      token?: string | null; // String
+    }
     updateUser: { // args
+      email?: string | null; // String
+      iconUrl?: string | null; // String
       id: string; // String!
       name?: string | null; // String
+      uid?: string | null; // String
     }
   }
   Query: {

@@ -17,9 +17,11 @@ import queryComplexity, { simpleEstimator } from 'graphql-query-complexity'
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'
 import { ApolloServerPluginLandingPageDisabled } from '@apollo/server/plugin/disabled'
 import { sleep } from '@/utils/time'
+import { getLoginUser } from '@/graphql/authManager/login'
+import { User } from 'nexus-prisma'
 
 interface Context {
-  token?: String
+  user?: User
 }
 
 const prisma = new PrismaClient()
@@ -64,6 +66,7 @@ export const server = new ApolloServer<Context>({
   validationRules: [depthLimit(7), queryComplexityRule],
   introspection: true,
 })
+
 export const startApolloServer = async () => {
   await server.start()
   app.use(
@@ -71,7 +74,10 @@ export const startApolloServer = async () => {
     cors<cors.CorsRequest>(),
     json(),
     expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token, prisma }),
+      context: async ({ req }) => ({
+        user: await getLoginUser(String(req.headers.authorization)),
+        prisma,
+      }),
     })
   )
 }
@@ -83,6 +89,6 @@ export const expressServer = httpServer.listen(PORT, async () => {
     process.exit()
   }
   console.log(
-    `🚀 [${skeetEnv}]Server ready at http://localhost:${PORT}/graphql`
+    `🚀 [API:${skeetEnv}]Server ready at http://localhost:${PORT}/graphql`
   )
 })

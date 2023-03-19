@@ -7,10 +7,15 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type LoginResponse {
+  token: String
+}
+
 type Mutation {
-  createUser(name: String): User
+  createUser(email: String, iconUrl: String, name: String, uid: String): User
   deleteUser(id: String!): User
-  updateUser(id: String!, name: String): User
+  login(token: String): LoginResponse
+  updateUser(email: String, iconUrl: String, id: String!, name: String, uid: String): User
 }
 
 """An object with a global ID"""
@@ -91,8 +96,11 @@ type QueryUserConnection_Connection {
 }
 
 type User {
+  email: String!
+  iconUrl: String!
   id: ID
   name: String!
+  uid: String!
 }
 
 type UserEdge {
