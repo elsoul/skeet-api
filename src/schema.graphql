@@ -51,6 +51,7 @@ type PageInfo {
 
 type Query {
   getUser(id: String!): User
+  me: User
 
   """Fetches an object given its global ID"""
   node(

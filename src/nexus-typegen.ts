@@ -115,6 +115,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     getUser: NexusGenRootTypes['User'] | null; // User
+    me: NexusGenRootTypes['User'] | null; // User
     node: NexusGenRootTypes['Node'] | null; // Node
     nodes: Array<NexusGenRootTypes['Node'] | null>; // [Node]!
     postTweet: boolean | null; // Boolean
@@ -160,6 +161,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     getUser: 'User'
+    me: 'User'
     node: 'Node'
     nodes: 'Node'
     postTweet: 'Boolean'

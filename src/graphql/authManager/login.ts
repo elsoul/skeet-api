@@ -1,12 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 import { decodedKey, encodeJWT } from '@/lib/jsonWebToken'
-import { objectType, extendType, stringArg } from 'nexus'
+import { objectType, extendType, stringArg, intArg } from 'nexus'
 import { User } from 'nexus-prisma'
 import { auth } from 'firebase-admin'
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier'
 import admin from 'firebase-admin'
 import crypto from 'crypto'
-
+import dotenv from 'dotenv'
+dotenv.config()
 admin.initializeApp()
 const prisma = new PrismaClient()
 
@@ -51,7 +52,6 @@ export const login = extendType({
           const decodedUser: DecodedIdToken = await auth().verifyIdToken(
             args.token
           )
-          console.log(decodedUser)
           const user: User = await ctx.prisma.user.findUnique({
             where: {
               uid: decodedUser.uid,
@@ -90,9 +90,14 @@ export const login = extendType({
 
 export const getLoginUser = async (token: string) => {
   try {
+    if (token == 'undefined' || token == null) throw new Error('undefined')
+
     const bearer = token.split('Bearer ')[1]
     if (!bearer) return unknownUser
     const userId = Number(await decodedKey(bearer))
+
+    if (Number.isNaN(userId)) throw new Error('NaN')
+
     const user = await prisma.user.findUnique({
       where: {
         id: userId,
